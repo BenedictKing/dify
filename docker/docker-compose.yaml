@@ -541,7 +541,7 @@ services:
 
   # plugin daemon
   plugin_daemon:
-    image: langgenius/dify-plugin-daemon:0.0.2-local
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/langgenius/dify-plugin-daemon:0.0.2-local
     restart: always
     environment:
       # Use the shared environment variables.
@@ -643,16 +643,6 @@ services:
     ports:
       - '${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}'
       - '${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}'
-
-  # The TiDB vector store.
-  # For production use, please refer to https://github.com/pingcap/tidb-docker-compose
-  tidb:
-    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/pingcap/tidb:v8.4.0
-    profiles:
-      - tidb
-    command:
-      - --store=unistore
-    restart: always
 
   # The Weaviate vector store.
   weaviate:
@@ -815,7 +805,7 @@ services:
   # Milvus vector database services
   etcd:
     container_name: milvus-etcd
-    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/quay.io/coreos/etcd:v3.5.5
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/quay.io/coreos/etcd:v3.5.5
     profiles:
       - milvus
     environment:
